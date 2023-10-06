@@ -1,17 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 
-function SearchBar(){
-    const [userInput, setUserInput] = useState("");
-    const handleChange =(e)=>{
-        setUserInput(e.target.value);
+function SearchBar({userInput, setUserInput}){
+    
+    const handleSubmit =(e)=>{
+        e.preventDefault();
+        setUserInput(e.target.elements.search.value);
     }
 
     return(
         <div>
-            <form onSubmit={(e)=>{e.preventDefault();}}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="search">Input your song name</label>
                 <br/>
-                <input type="text" value={userInput} id="search" />
+                <input type="text" id="search" />
                 <br/>
                 <button type="submit">Search</button>
             </form>
