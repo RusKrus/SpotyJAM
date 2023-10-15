@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
 
+import token from "../Spotify/APIreq"
 import './App.css';
 
 
@@ -14,11 +15,11 @@ function App() {
 
   return (
     <div>
-      
-      <SearchBar userInput={userInput} setUserInput={setUserInput}/>
+      <span>{userInput}</span>
+      <SearchBar userInput={userInput} setUserInput={setUserInput} token={token}/>
       <div>
         <SearchResults userInput={userInput} playListTracks={playListTracks} setPlayListTracks={setPlayListTracks}/>
-        <Playlist playListName={playListName} setPlayListName={setPlayListName} playListTracks={playListTracks} setPlayListTracks={setPlayListTracks}/>
+        <Playlist playListName={playListName} setPlayListName={setPlayListName} playListTracks={playListTracks} token={token}/>
         
       </div>
     </div>

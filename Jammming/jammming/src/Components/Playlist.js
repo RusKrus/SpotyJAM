@@ -1,17 +1,16 @@
 import React from "react";
 
-function PlayList({playListName, setPlayListName, playListTracks, setPlayListTracks}){
+function PlayList({playListName, setPlayListName, playListTracks, token}){
 
-    const handleSubmit=(e)=>{
-        e.preventDefault(); 
-        setPlayListName(e.target.elements[`Playlist's name`].value);
+    const handleChange=(e)=>{
+        setPlayListName(e.target.value);
     }
 
     return(
         <div>
         
-        <form id="name" onSubmit={handleSubmit}>
-                <input type="text" name="Playlist's name"  placeholder="Type name of your playlist here..."/>
+        <form id="name" onSubmit={e=>{e.preventDefault()}}>
+                <input onChange={handleChange} type="text" name="Playlist's name"  placeholder="Type name of your playlist here..." value={playListName}/>
             </form>
             <div>
                 {playListTracks}

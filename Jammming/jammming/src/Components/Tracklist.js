@@ -5,6 +5,7 @@ import songs from "./Example";
 function TrackList({userInput, playListTracks, setPlayListTracks}){
     userInput=userInput.toLowerCase();
     return(
+        
         userInput&&songs.map(song=>{
             return (
                 song.name.toLowerCase().includes(userInput)||song.artist.toLowerCase().includes(userInput)||song.album.toLowerCase().includes(userInput))?

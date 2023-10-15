@@ -6,8 +6,7 @@ function Track({artist, name, album, id, playListTracks, setPlayListTracks}){
     const songTitle = `${artist} - ${name}`;
     const handlePlusClick = (e) => {
         const handleMinusClick = () =>{
-            playListTracks.filter(track=>console.log(track.props.id))
-            console.log(playListTrack.props.id)
+            setPlayListTracks(prev=>prev.filter(track=>track.props.id!==id));
         }
         const playListTrack = (
             <div key={id} id = {id}>
@@ -21,8 +20,7 @@ function Track({artist, name, album, id, playListTracks, setPlayListTracks}){
             setPlayListTracks(prev=>[...prev, playListTrack]);
         }
         
-    }
-    
+    }  
     return(
         <div >
             <p>{songTitle}</p>
