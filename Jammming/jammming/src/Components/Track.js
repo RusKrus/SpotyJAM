@@ -4,7 +4,7 @@ import React from "react";
 function Track({artist, name, album, id, playListTracks, setPlayListTracks}){
 
     const songTitle = `${artist} - ${name}`;
-    const handlePlusClick = (e) => {
+    const handlePlusClick = () => {
         const handleMinusClick = () =>{
             setPlayListTracks(prev=>prev.filter(track=>track.props.id!==id));
         }

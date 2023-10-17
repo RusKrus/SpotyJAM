@@ -1,12 +1,12 @@
 import React from "react";
 import Track from "./Track";
-import songs from "./Example";
 
-function TrackList({userInput, playListTracks, setPlayListTracks}){
+
+function TrackList({userInput, playListTracks, setPlayListTracks,musicArray}){
     userInput=userInput.toLowerCase();
     return(
         
-        userInput&&songs.map(song=>{
+        userInput&&musicArray.map(song=>{
             return (
                 song.name.toLowerCase().includes(userInput)||song.artist.toLowerCase().includes(userInput)||song.album.toLowerCase().includes(userInput))?
                 <Track 

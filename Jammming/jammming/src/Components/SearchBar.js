@@ -1,14 +1,14 @@
 import React from "react";
 
-function SearchBar({userInput, setUserInput, token}){
+function SearchBar({userInput, setUserInput, token, setMusicArray}){
     const handleChange=(e)=>{
         setUserInput(e.target.value)
     }
-    const handleSubmit =(e)=>{
+    
+    const handleSubmit = async (e)=>{
         e.preventDefault();
-        
-        
-        token.getMusic(userInput);
+        const answer = await token.getMusic(userInput);
+        setMusicArray(answer);
     }
 
     return(

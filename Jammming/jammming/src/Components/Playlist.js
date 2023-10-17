@@ -6,10 +6,16 @@ function PlayList({playListName, setPlayListName, playListTracks, token}){
         setPlayListName(e.target.value);
     }
 
+    const handleSubmit = async (e)=> {
+        e.preventDefault();
+        await token.addMusicToPlaylist(playListName, playListTracks);
+        setPlayListName([]);
+    }
+
     return(
         <div>
         
-        <form id="name" onSubmit={e=>{e.preventDefault()}}>
+        <form id="name" onSubmit={handleSubmit}>
                 <input onChange={handleChange} type="text" name="Playlist's name"  placeholder="Type name of your playlist here..." value={playListName}/>
             </form>
             <div>
