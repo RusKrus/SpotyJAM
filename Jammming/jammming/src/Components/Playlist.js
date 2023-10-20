@@ -11,7 +11,7 @@ function PlayList({playListName, setPlayListName, playListTracks, token, setPlay
         e.preventDefault();
         await token.addMusicToPlaylist(playListName, playListTracks);
         if(playListName!==""){
-            setPlayListTracks(prev=>[]);
+            setPlayListTracks(()=>[]);
         }
         setPlayListName("");
        

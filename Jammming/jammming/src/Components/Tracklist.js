@@ -2,7 +2,7 @@ import React from "react";
 import Track from "./Track";
 
 
-function TrackList({finalUserInput, userInput, playListTracks, setPlayListTracks,musicArray}){
+function TrackList({ userInput, playListTracks, setPlayListTracks,musicArray}){
     userInput=userInput.toLowerCase();
     return(
         
