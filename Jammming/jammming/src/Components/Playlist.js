@@ -1,6 +1,7 @@
 import React from "react";
+import styles from "./Styling/Playlist.module.css"
 
-function PlayList({playListName, setPlayListName, playListTracks, token}){
+function PlayList({playListName, setPlayListName, playListTracks, token, setPlayListTracks}){
 
     const handleChange=(e)=>{
         setPlayListName(e.target.value);
@@ -9,19 +10,21 @@ function PlayList({playListName, setPlayListName, playListTracks, token}){
     const handleSubmit = async (e)=> {
         e.preventDefault();
         await token.addMusicToPlaylist(playListName, playListTracks);
-        setPlayListName([]);
+        if(playListName!==""){
+            setPlayListTracks(prev=>[]);
+        }
+        setPlayListName("");
+       
     }
 
     return(
-        <div>
-        
+        <div className={styles.box}>
         <form id="name" onSubmit={handleSubmit}>
-                <input onChange={handleChange} type="text" name="Playlist's name"  placeholder="Type name of your playlist here..." value={playListName}/>
+                <input className={styles.input} autoComplete="off" onChange={handleChange} type="text" name="Playlist's name"  placeholder="Playlist's name..." value={playListName}/>
             </form>
-            <div>
+            <hr></hr>
                 {playListTracks}
-            </div>
-            <button form="name" type="submit">Submit to Spotify</button>
+            <button form="name" type="submit" className={styles.button}>Submit to Spotify</button>
         </div>
 
     )

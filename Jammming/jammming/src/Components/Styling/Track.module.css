@@ -1,0 +1,54 @@
+.container{
+    display: grid;
+    border-radius:5px;
+    padding:0.5rem;
+    border-bottom: white dotted 1px;
+    color: hsl(40, 100%, 60%);
+    grid-template-areas: "p1 button"
+                         "p2 button";   
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 9fr 1fr;
+    
+                           
+}
+
+
+
+
+.container:hover{
+    background-color: hsla(230, 60%, 40%, 1);
+}
+
+.button{
+    grid-area: button;
+    background-color:transparent;
+    border-color: transparent;
+    font-weight: bold;
+    font-size:1.2rem;
+    color: hsl(40, 100%, 60%)
+}   
+
+.button:hover{
+    font-size: 1.25rem;
+    color: yellow;
+}
+
+
+.p1{
+    grid-area: p1;
+    margin: 0;
+    text-align: left;
+    width: 90%;
+    
+}
+
+.p2{
+    grid-area: p2;
+    margin: 0;
+    text-align: left;
+    width: 90%;
+    font-style:italic;
+    font-size: 0.9rem;
+    color: hsl(40, 100%, 40%);
+    
+}

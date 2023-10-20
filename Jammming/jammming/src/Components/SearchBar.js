@@ -1,10 +1,13 @@
 import React from "react";
+import styles from "./Styling/SearchBar.module.css"
 
 function SearchBar({userInput, setUserInput, token, setMusicArray}){
+    let input ;
     const handleChange=(e)=>{
-        setUserInput(e.target.value)
+        input = e.target.value;
+        setUserInput(input);
     }
-    
+
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const answer = await token.getMusic(userInput);
@@ -12,13 +15,11 @@ function SearchBar({userInput, setUserInput, token, setMusicArray}){
     }
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="search">Input your song name</label>
+        <div className={styles.searchbar}>
+            <form onSubmit={handleSubmit}>  
+                <input  autoComplete = 'off'  className = {styles.input} type="text" id="search" onChange={handleChange} value={userInput} placeholder="Find your song..."/>
                 <br/>
-                <input type="text" id="search" onChange={handleChange} value={userInput}/>
-                <br/>
-                <button type="submit">Search</button>
+                <button type="submit" className={styles.button}>Search</button>
             </form>
             
         </div>

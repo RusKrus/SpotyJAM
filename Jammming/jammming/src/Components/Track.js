@@ -1,18 +1,17 @@
 import React from "react";
-
+import styles from "./Styling/Track.module.css"
 
 function Track({artist, name, album, id, playListTracks, setPlayListTracks}){
 
-    const songTitle = `${artist} - ${name}`;
     const handlePlusClick = () => {
         const handleMinusClick = () =>{
             setPlayListTracks(prev=>prev.filter(track=>track.props.id!==id));
         }
         const playListTrack = (
-            <div key={id} id = {id}>
-                <p>{songTitle}</p>
-                <p>{album}</p>
-                <button onClick={handleMinusClick}>-</button>
+            <div className={styles.container} key={id} id = {id} >
+                <p className={styles.p1}><strong>{artist}</strong> - {name}</p>
+                <p className={styles.p2}>{album}</p>
+                <button className={styles.button} onClick={handleMinusClick} >-</button>
             </div>
         )
         const isAdded = playListTracks.some(track=>track.props.id===playListTrack.props.id);
@@ -22,10 +21,10 @@ function Track({artist, name, album, id, playListTracks, setPlayListTracks}){
         
     }  
     return(
-        <div >
-            <p>{songTitle}</p>
-            <p>{album}</p>
-            <button onClick={handlePlusClick}>+</button>
+        <div className={styles.container}>
+            <p className={styles.p1}><strong>{artist}</strong> - {name}</p>
+            <p className={styles.p2}>{album}</p>
+            <button className={styles.button} onClick={handlePlusClick}>+</button>
         </div>
     )
 }

@@ -1,0 +1,48 @@
+.searchbar{
+    text-align: center;
+    margin: 5rem 0; 
+    font-size: 3rem;
+    background-color: hsla(230, 60%, 70%, 0.9);
+    height: 10rem;
+  }
+
+  .input{
+    width: 20%;
+    height:3rem;
+    border-radius: 7px;
+    font-size: 1.3rem;
+    border: 0;
+    border: hsl(0, 0%, 100%) solid 3px;
+    text-align:center; 
+  }
+
+  .input:hover{
+    border: hsl(0, 0%, 40%) solid 3px;    
+  }
+
+  .input:focus{
+    border: black solid 3px;
+  }
+
+
+
+  .button{
+    width: 5rem;
+    height:2rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    background-color: hsl(40, 100%, 60%);
+    transition: background-color 400ms;
+    font-weight: bold;
+  }
+
+  .button:hover{
+    
+    width: 5.2rem;
+    height: 2.2rem;
+  }
+
+  .button:active{
+    background-color: hsl(40, 90%, 80%);
+  }
+
