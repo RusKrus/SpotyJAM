@@ -1,5 +1,5 @@
 
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
@@ -13,7 +13,16 @@ function App() {
   const[playListName, setPlayListName] = useState("");
   const [playListTracks, setPlayListTracks] = useState([]);
   const [musicArray, setMusicArray] = useState([]);
+  const [savedPlaylistTracksData, setSavedPlaylistTracksData] = useState(window.sessionStorage.getItem("tracks")?JSON.parse(window.sessionStorage.getItem("tracks")):[])
+    
+
+
+  useEffect(()=>{
+    window.sessionStorage.setItem("tracks", JSON.stringify(savedPlaylistTracksData));
+    
+  }, [savedPlaylistTracksData])
   
+
   
   return (
     <div>
@@ -21,11 +30,23 @@ function App() {
         <h1>Jammming</h1>
       </header>
       <main >  
-          
-          <SearchBar  userInput={userInput} setUserInput={setUserInput} token={token} setMusicArray={setMusicArray}/>
+          <SearchBar  userInput={userInput} 
+                      setUserInput={setUserInput} 
+                      token={token} 
+                      setMusicArray={setMusicArray}/>
         <div className={styles.lists}>
-          <SearchResults  userInput={userInput} playListTracks={playListTracks} setPlayListTracks={setPlayListTracks} musicArray={musicArray}/>
-          <Playlist playListName={playListName} setPlayListName={setPlayListName} playListTracks={playListTracks} token={token} setPlayListTracks={setPlayListTracks}/>
+          <SearchResults  setSavedPlaylistTracksData={setSavedPlaylistTracksData} 
+                          userInput={userInput} 
+                          playListTracks={playListTracks} 
+                          setPlayListTracks={setPlayListTracks} 
+                          musicArray={musicArray}/>
+          <Playlist   playListName={playListName} 
+                      setPlayListName={setPlayListName} 
+                      playListTracks={playListTracks} 
+                      token={token} 
+                      setPlayListTracks={setPlayListTracks}
+                      savedPlaylistTracksData={savedPlaylistTracksData}
+                      setSavedPlaylistTracksData={setSavedPlaylistTracksData}/>
         </div>
       </main>
     </div>
