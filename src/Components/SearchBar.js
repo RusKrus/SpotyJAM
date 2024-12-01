@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import styles from "./Styling/SearchBar.module.css"
 
-function SearchBar({userInput, setUserInput, token, setMusicArray}){
+function SearchBar({ setUserInput, token, setMusicArray }){
     const [input, setInput] = useState(window.sessionStorage.getItem("input"));
     
 

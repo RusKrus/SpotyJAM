@@ -1,5 +1,5 @@
         //getting auth url
-const clientId = '';//use your own Id
+const clientId = 'fb265b11d74f4e9393a68881a31d6c94';//use your own Id
 const redirectUri = 'http://localhost:3000/';
 const scope = 'playlist-modify-public user-read-private user-read-email playlist-modify-private playlist-read-collaborative';
 let url = 'https://accounts.spotify.com/authorize';
