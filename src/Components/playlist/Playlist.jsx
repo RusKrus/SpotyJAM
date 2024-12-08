@@ -1,29 +1,34 @@
 import React, {useEffect} from "react";
-import styles from "./Styling/Playlist.module.css"
-import stylesTr from "./Styling/Track.module.css"
+import styles from "./playlist.module.css";
+import Track from '../track/Track'
+import { useSelector, useDispatch } from "react-redux";
+import { setPlaylistName, setPlaylistSongs, createPlaylist } from "./playlistSlice";
 
-function PlayList({playListName, setPlayListName, playListTracks, token, setPlayListTracks, savedPlaylistTracksData, setSavedPlaylistTracksData}){
-    
+
+function PlayList({ savedPlaylistTracksData, setSavedPlaylistTracksData }){
+    const dispatch = useDispatch();
+    const playlistName = useSelector(state=>state.playlistState.playlistName);
+    const playlistSongsData = useSelector(state=>state.playlistState.playlistSongsData)
+
     const handleChange=(e)=>{
-        setPlayListName(e.target.value);
-    }
+        dispatch(setPlaylistName(e.target.value));
+    };
 
     const handleSubmit = async (e)=> {
         e.preventDefault();
-        await token.addMusicToPlaylist(playListName, playListTracks);
-        if(playListName!==""){
-            setPlayListTracks([]);
-        }
-        setPlayListName("");
-    }
-    
+        dispatch(createPlaylist({playlistName, playlistSongsData}));
+        setPlaylistName("");
+    };
+
+    //Часть логики session storage. Пока что не работает, потому что приходится посылать в redux хранилище элементы React 
+    /* 
     useEffect(()=>{
         if (savedPlaylistTracksData){
             const savedPlayList = [];
             for (const TrackData of savedPlaylistTracksData){
                 const {artist, name, album, id} = TrackData;
                 const handleMinusClick = () =>{
-                    setPlayListTracks(prev=>prev.filter(track=>track.props.id!==id));
+                    dispatch(setPlaylistSongs(prev=>prev.filter(track=>track.props.id!==id)));
                     setSavedPlaylistTracksData(prev=>prev.filter(track=>track.id!==id));
                 }
                 const playListTrack = ( 
@@ -35,20 +40,20 @@ function PlayList({playListName, setPlayListName, playListTracks, token, setPlay
                 )
                 savedPlayList.push(playListTrack)
             }
-            setPlayListTracks(savedPlayList);     
+            setPlaylistSongs(savedPlayList);     
         }// eslint-disable-next-line 
     }, [])
-    
+    */
+
 
 
     return(
         <div className={styles.box}>
         <form id="name" onSubmit={handleSubmit}>
-                <input className={styles.input} autoComplete="off" onChange={handleChange} type="text" name="Playlist's name"  placeholder="Playlist's name..." value={playListName}/>
+                <input className={styles.input} autoComplete="off" onChange={handleChange} type="text" name="Playlist's name"  placeholder="Playlist's name..." value={playlistName}/>
             </form>
             <hr></hr>
-
-                {playListTracks}
+            {playlistSongsData.map(songData => <Track songData = {songData} key={songData.id} />)}
             <button form="name" type="submit" className={styles.button}>Submit to Spotify</button>
         </div>
 

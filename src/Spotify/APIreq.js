@@ -32,10 +32,10 @@ const token={
         }
     },
 
-    async getMusic(request){
+    async getMusic(keyword){
         await this.getToken();
         try{
-            let spotifyURL = `https://api.spotify.com/v1/search?q=${request}&type=track`;
+            let spotifyURL = `https://api.spotify.com/v1/search?q=${keyword}&type=track`;
             const response = await fetch(spotifyURL,{
                 method:"GET",
                 headers:{
@@ -70,6 +70,7 @@ const token={
         }
         catch(error){
             console.log(error);
+            throw new Error('Invalid request!');
         }
     },
 
@@ -105,7 +106,7 @@ const token={
         try{
             let spotifyURL = `https://api.spotify.com/v1/users/${userId}/playlists`;
             const dataForBody = {
-                name: `${name}`,
+                name: name?`${name}`:'New playlist from Jamming',
                 description: "Something",
                 public: false
             }
@@ -132,16 +133,16 @@ const token={
 
     },
 
-    async addMusicToPlaylist(name,playListTracks){
+    async addMusicToPlaylist(name, playListSongsData){
+        
         const playListId = await this.createPlaylist(name);
         try{
-            const tracksUris = playListTracks.map(track=>track.props.id);
-            console.log(tracksUris);
+            const tracksUris = playListSongsData.map(songData=>songData.id);
             let spotifyURL = `https://api.spotify.com/v1/playlists/${playListId}/tracks`;
             const dataForBody = {
                 uris: tracksUris
             }
-            const response = fetch(spotifyURL, {
+            const response = await fetch(spotifyURL, {
                 method: "POST",
                 headers:{
                     'Authorization': `Bearer ${accessToken}`,
@@ -151,14 +152,15 @@ const token={
             })
             if(response.ok){
                 const answer = await response.json();
-                console.log(answer)
+                console.log("answer is:", answer)
             }
             else{
-                console.log("Not pissible to add track to your playlist")
+                console.log("Not pissible to add track to your playlist", response)
             }
         }
         catch(e){
             console.log(e);
+            throw Error('Unable to create playlist');
         }
     }
 

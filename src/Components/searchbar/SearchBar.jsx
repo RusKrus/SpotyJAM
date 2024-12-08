@@ -1,35 +1,37 @@
-import React, {useState, useEffect} from "react";
-import styles from "./Styling/SearchBar.module.css"
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInput, getSongs } from "./searchBarSlice";
+import styles from "./searchBar.module.css";
 
-function SearchBar({ setUserInput, token, setMusicArray }){
+function SearchBar(){
+    const dispatch = useDispatch();
+    const userInput = useSelector(state=>state.searchBarState.userInput);
+/*
     const [input, setInput] = useState(window.sessionStorage.getItem("input"));
-    
-
     useEffect(()=>{
         if (!input){
             setInput("")
         }
-    }, []);
+    }, [input]);
 
     useEffect(()=>{
         window.sessionStorage.setItem("input", input);
     }, [input]);
+    */
 
     const handleChange = (e) => {
-        setInput(e.target.value);
+        dispatch(setUserInput(e.target.value))
     }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        setUserInput(input);
-        const answer = await token.getMusic(input);
-        setMusicArray(answer);
+        dispatch(getSongs(userInput));
     }
 
     return(
         <div className={styles.searchbar}>
             <form onSubmit={handleSubmit}>  
-                <input  autoComplete = 'off'  className = {styles.input} type="text" id="search" onChange={handleChange} value={input} placeholder="Find your song..."/>
+                <input  autoComplete='off' className={styles.input} type="text" id="search" onChange={handleChange} value={userInput} placeholder="Find your song..."/>
                 <br/>
                 <button type="submit" className={styles.button}>Search</button>
             </form>
