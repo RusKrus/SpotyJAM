@@ -1,11 +1,12 @@
 import spotifyRequests from '../../Spotify/APIreq';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { SearchResults, SearchBarState } from '../../helperModules//appTypes';
 
 
 const getSongs = createAsyncThunk(
     'searchBar/getSongs',
-    async (keyword) => {
-        const request = await spotifyRequests.getMusic(keyword);
+    async (keyword: string): Promise<SearchResults> => {
+        const request: SearchResults = await spotifyRequests.getMusic(keyword);
         return request;
     }
 );
@@ -13,7 +14,7 @@ const getSongs = createAsyncThunk(
 
 
 
-const initialState = {
+const initialState: SearchBarState = {
     userInput: '',
     songs: [], 
     status: 'idle'
@@ -23,7 +24,7 @@ const searchBarSlice = createSlice({
     name: 'searchBar',
     initialState, 
     reducers: {
-        setUserInput(state, action){
+        setUserInput(state, action: PayloadAction<string>){
             state.userInput = action.payload;
         }
     },
