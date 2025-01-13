@@ -22,7 +22,7 @@ class App extends React.Component {
           closeOnClick={true}
         />
         <header className={styles.header}>
-          <h1 className = {styles.siteName}>JAMMMING</h1>
+          <h1 className = {styles.siteName}>SpotyJAM</h1>
         </header>
         <main >  
           <SearchBar />

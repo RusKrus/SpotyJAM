@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Welcome to SpotyJAM web application! 
+## This app allows you to search for songs on Spotify, browse the results, and create new playlists with your favorite tracks.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the Project
 
-## Available Scripts
+This project was created as a pet project to learn and practice modern front-end development technologies, such as TypeScript, React, Redux, and integration with external APIs.
 
-In the project directory, you can run:
+**Key Features:**
 
-### `npm start`
+* Search for songs by title, artist, or album.
+* Display search results with album art, song title, and artist.
+* Create new Spotify playlists.
+* Add songs to playlists.
+* **Secure Spotify Authorization:**  Utilizes the Authorization Code Grant with PKCE flow for secure client-side authorization, with `codeVerifier` encryption and user ID verification to prevent access token interception in CSRF attacks.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* **TypeScript:** Programming language that provides static typing and improves code maintainability.
+* **React (Create React App):** JavaScript library for building user interfaces with a component-based approach. Create React App provides a convenient development environment.
+* **React Router:** Library for managing routing in React applications, enabling navigation between different views.
+* **Redux:**  Library for managing application state, simplifying data handling and component interaction.
+* **React-Toastify:** Library for displaying notifications in the application, providing a user-friendly way to inform the user.
+* **Spotify API:** Used for searching songs and creating playlists.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/RusKrus/SpotyJAM.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd SpotyJAM
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the application:
+   ```bash
+   npm start
+   ```
+### Note: This application uses my Spotify client ID for authorization purposes. You do not need to provide your own ID.
 
-### `npm run build`
+## Future Development
+* Responsive Design: Make the app adaptable for mobile devices.
+* Enhanced Search Results: Enable viewing more than 20 songs per search query.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
