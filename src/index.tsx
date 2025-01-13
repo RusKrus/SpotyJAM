@@ -1,18 +1,29 @@
 import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from './Components/app/store';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './Components/app/App';
+import Redirect from './Components/redirect/Redirect';
 import reportWebVitals from './reportWebVitals';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />
+  },
+  {
+    path: "/redirect",
+    element: <Redirect />
+  }
+]);
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <Provider store = {store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+      <RouterProvider router = {router} />
   </Provider>
 
 );

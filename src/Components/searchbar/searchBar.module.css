@@ -1,48 +1,58 @@
 .searchbar{
-    text-align: center;
-    margin: 5rem 0; 
-    font-size: 3rem;
-    background-color: hsla(230, 60%, 70%, 0.9);
-    height: 10rem;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0; 
+  font-size: 3rem;
+  background-color: hsla(230, 60%, 70%, 0.9);
+  height: 10rem;
+}
 
-  .input{
-    width: 20%;
-    height:3rem;
-    border-radius: 7px;
-    font-size: 1.3rem;
-    border: 0;
-    border: hsl(0, 0%, 100%) solid 3px;
-    text-align:center; 
-  }
+.searchForm{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+}
 
-  .input:hover{
-    border: hsl(0, 0%, 40%) solid 3px;    
-  }
+.input{
+  width: 100%;
+  height:3rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  border: 0;
+  border: hsl(0, 0%, 100%) solid 3px;
+  text-align:center; 
+}
 
-  .input:focus{
-    border: black solid 3px;
-  }
+.input:hover{
+  border: hsl(29, 70%, 62%) solid 2px;   
+}
+
+.input:focus{
+  outline: none;
+  border: hsl(29, 83%, 55%) solid 3px;   
+}
+
+.button{
+  width: 5rem;
+  height:2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  background-color: hsl(40, 100%, 60%);
+  font-weight: bold;
+  box-shadow: -0.15rem 0.15rem; 
+  transition: 0.1s;
+  cursor: pointer;
+  border: none;
+}
 
 
-
-  .button{
-    width: 5rem;
-    height:2rem;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    background-color: hsl(40, 100%, 60%);
-    transition: background-color 400ms;
-    font-weight: bold;
-  }
-
-  .button:hover{
-    
-    width: 5.2rem;
-    height: 2.2rem;
-  }
-
-  .button:active{
-    background-color: hsl(40, 90%, 80%);
-  }
+.button:active{
+  box-shadow: none;
+  transform: translate(-0.15rem, 0.15rem);
+  transition: 0.1s;
+}
 

@@ -1,45 +1,67 @@
-.box{
-    height: 40rem;
-    width: 35%;
-    background-color: hsla(230, 60%, 50%, 0.9);
-    text-align:center;
-    padding:1rem;
-    overflow-y:scroll;
-    
+.playlistBox{
+  height: 40rem;
+  width: 35%;
+  background-color: hsla(230, 60%, 50%, 1);
+  padding:1rem;
+  border-radius: 20px;
+  box-shadow: -10px 10px 10px black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.playlistInputForm{
+  height: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%
+}
+
+.playlistNameInput{
+  width: 75%;
+  height:2rem;
+  border-radius: 7px;
+  font-size: 1.2rem;
+  border: 0;
+  text-align:center; 
+}
+
+.playlistNameInput:hover{
+  border: hsl(29, 70%, 62%) solid 2px;    
+}
+
+.playlistNameInput:focus{
+  outline: none;
+  border: hsl(29, 70%, 62%) solid 3px;    
+}
+
+
+.musicBox{
+  overflow-y: scroll;  
+  height: 75%;
+  width: 100%;
 }
 
 .button{
-    width:10rem;
-    height:2rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: hsl(40, 100%, 60%);
-    transition: background-color 400ms;
-    margin: 1rem;
-    font-weight: bold;
+  border-radius: 8px;
+  background-color: hsl(40, 100%, 60%);
+  padding: .5rem .5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  width: 10rem;
+  box-shadow: -0.25rem 0.25rem; 
+  transition: 0.1s;
+  align-self:last baseline;
 }
 
-.button:hover{
-    width:10.2rem;
-    height:2.2rem;
+
+.button:active{
+  box-shadow: none;
+  transform: translate(-0.25rem, 0.25rem);
+  transition: 0.1s;
 }
 
-
-.input{
-    width: 75%;
-    height:2rem;
-    border-radius: 7px;
-    font-size: 1.2rem;
-    border: 0;
-    border: hsl(0, 0%, 100%) solid 3px;
-    text-align:center; 
-    margin:1rem;
-  }
-
-  .input:hover{
-    border: hsl(0, 0%, 40%) solid 3px;    
-  }
-
-  .input:focus{
-    border: black solid 3px;
-  }

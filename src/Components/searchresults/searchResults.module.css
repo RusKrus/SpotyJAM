@@ -1,14 +1,39 @@
-.box{
+.resultsBox{
     height: 40rem;
     width: 35%;
-    background-color: hsla(230, 60%, 50%, 0.9);
-    text-align:center;
+    background-color: hsla(230, 60%, 50%, 1);
     padding:1rem;
-    overflow-y:scroll;  
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px black
 }
 
-.h2{
-    margin: 1.5rem;
+.headerBox{
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultBoxHeader{
     color: hsl(40, 100%, 60%);
+    margin: 0;
+    text-align: center;
+}
+
+.clearResultsButton{
+    color: red;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: dotted underline;
+}
+
+.clearResultsButton:hover{
+    color: red;
+}
+
+.musicBox{
+    overflow-y: scroll;  
+    height: 75%
 }
 

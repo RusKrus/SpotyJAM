@@ -1,58 +1,85 @@
 import React from "react";
 import Track from "../track/Track";
 import styles from "./searchResults.module.css";
-import { RootState } from "../app/store";
+import { restoreSavedSongs, clearAllSongs} from "../searchbar/searchBarSlice";
+import { RootState, AppDispatch } from "../app/store";
+import { StateForSearchResults, ParsedTracksServerDataForApp } from "../../helperModules/appTypes";
 import { connect, ConnectedProps } from 'react-redux';
-/*import { useSelector } from 'react-redux';
 
-function SearchResults(){
-    const userInput = useSelector(state=>state.searchBarState.userInput);
-    const songsList = useSelector(state=>state.searchBarState.songs);
-    const lowerCaseUserInput = userInput.toLowerCase();
-    return(
-        <div className={styles.box}>
-            <h2 className={styles.h2}>Results</h2>
-            <hr></hr>
-            {lowerCaseUserInput&&songsList.map(songData=>{
-            const { artist, name, album, id } = songData;
-            return (
-                name.toLowerCase().includes(lowerCaseUserInput)||artist.toLowerCase().includes(lowerCaseUserInput)||album.toLowerCase().includes(lowerCaseUserInput))?
-                <Track 
-                    songData = {songData}
-                    key = {id} 
-                    containerType = "Search results"
-                    setSavedPlaylistTracksData={setSavedPlaylistTracksData} />
-                :null})}  
-        </div>
-    )
-}*/
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: RootState): StateForSearchResults => {
     return {
-        userInput: state.searchBarState.userInput, 
-        songsList: state.searchBarState.songs
+        songsList: state.searchBarState.parsedServerData.songsData,
+        parsedServerData: state.searchBarState.parsedServerData
     }
-}
-const connected = connect(mapStateToProps);
+};
+
+const mapDispatchToProps = (dispatch: AppDispatch) => {
+    return {
+        restoreSavedSongs: (parsedServerData: ParsedTracksServerDataForApp) => dispatch(restoreSavedSongs(parsedServerData)),
+        clearAllSongs: () => dispatch(clearAllSongs())
+    }
+};
+
+
+const connected = connect(mapStateToProps, mapDispatchToProps);
 type ReduxPropsForSearchResults = ConnectedProps<typeof connected>
 
 class SearchResultsPresentational extends React.Component<ReduxPropsForSearchResults>{
     
+    handleUnloadToSaveTracks = (): void => {
+        if(this.props.songsList.length>0){
+            const savedSongsData: string = JSON.stringify(this.props.parsedServerData);
+            window.sessionStorage.setItem('songData', savedSongsData)
+        }
+    };
+
+    handleLoadToRestoreSongs = (savedSongsData: string): void => {
+        const parsedSavedSongsArray: ParsedTracksServerDataForApp = JSON.parse(savedSongsData);
+        this.props.restoreSavedSongs(parsedSavedSongsArray);
+    };
+
+    handleClearClick = (): void => {
+        window.sessionStorage.removeItem('songData');
+        this.props.clearAllSongs();
+    }
+
+    componentDidMount(): void {
+        window.addEventListener('beforeunload', this.handleUnloadToSaveTracks);
+        const savedSongsData: string | null = window.sessionStorage.getItem('songData');
+        if(savedSongsData){
+            this.handleLoadToRestoreSongs(savedSongsData);
+        };
+    };
+    
+    componentWillUnmount(): void {
+            window.removeEventListener('beforeunload', this.handleUnloadToSaveTracks);
+    };
+
     render(){
-        const {userInput, songsList} = this.props;
-        const lowerCaseUserInput: string = userInput.toLowerCase();
+        const { songsList } = this.props;
         return(
-            <div className={styles.box}>
-                <h2 className={styles.h2}>Results</h2>
+            <div className={styles.resultsBox}>
+                <div className={styles.headerBox}>
+                    <h2 className={styles.resultBoxHeader}>
+                        Results 
+                        <br/>
+                        <span style={{visibility: this.props.songsList.length>0?'visible':'hidden'}} onClick = {this.handleClearClick} className = {styles.clearResultsButton}>CLEAR SONGS</span>
+                    </h2>
+                    
+                </div>
+                <hr ></hr>
+                <div className = {styles.musicBox}>
+                    {songsList.map((songData, index)=>{
+                        return (
+                            <Track 
+                                songData = {songData}
+                                key = {index} 
+                                containerType = "Search results" />
+                            )}
+                        )
+                    }  
+                </div>
                 <hr></hr>
-                {lowerCaseUserInput&&songsList.map(songData=>{
-                const { artist, name, album, id } = songData;
-                return (
-                    name.toLowerCase().includes(lowerCaseUserInput)||artist.toLowerCase().includes(lowerCaseUserInput)||album.toLowerCase().includes(lowerCaseUserInput))?
-                    <Track 
-                        songData = {songData}
-                        key = {id} 
-                        containerType = "Search results" />
-                    :null})}  
             </div>
         )
     }

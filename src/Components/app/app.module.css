@@ -6,7 +6,13 @@
   padding:1rem;
   color: hsl(40, 100%, 60%);
   justify-content: center;
-  
+
+}
+
+
+.siteName{
+  font-size: 3rem;
+  margin: 0;
 }
 
 .p{
@@ -19,6 +25,7 @@
   display: flex;
   justify-content: space-around; 
   color: black; 
+  padding-bottom: 1rem;
 }
 
 .content{

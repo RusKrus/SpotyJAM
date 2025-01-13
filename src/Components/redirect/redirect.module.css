@@ -1,0 +1,17 @@
+.redirectPage{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+};
+
+.redirectSign{
+    margin: 0;
+}
+
+.errorText{
+    text-align: center;
+    font-size: 2rem;
+}

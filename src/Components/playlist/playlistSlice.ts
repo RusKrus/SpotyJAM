@@ -1,13 +1,14 @@
-import spotifyRequests from '../../Spotify/APIreq';
+import SpotifyAPI from '../../Spotify/SpotifyAPI';
+import { toast } from 'react-toastify';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SongsData, PlaylistState, DataForCreatingPlaylist } from '../../helperModules//appTypes';
+import { TrackDataForApp, PlaylistState, DataForCreatingPlaylist } from '../../helperModules//appTypes';
 
 
 const createPlaylist = createAsyncThunk(
     'playlist/sendSongs', 
     async (playListData: DataForCreatingPlaylist): Promise <void> =>{
-        const { playlistName, playlistSongsData } = playListData;
-        spotifyRequests.addMusicToPlaylist(playlistName, playlistSongsData);
+        const { playlistName, playlistUris } = playListData;
+        await SpotifyAPI.addMusicToPlaylist(playlistName, playlistUris);
     }
 )
 
@@ -26,11 +27,14 @@ const playlistSlice = createSlice({
         setPlaylistName(state, action: PayloadAction<string>){
             state.playlistName = action.payload;
         },
-        setPlaylistSongsData(state, action: PayloadAction<SongsData>){
+        setPlaylistSongsData(state, action: PayloadAction<TrackDataForApp>){
             state.playlistSongsData.push(action.payload);
         },
         removePlayListSongsData(state, action: PayloadAction<string>){
-            state.playlistSongsData = state.playlistSongsData.filter(songData=>songData.id!==action.payload);
+            state.playlistSongsData = state.playlistSongsData.filter(songData=>songData.uri!==action.payload);
+        },
+        clearPlaylistSongsData(state){
+            state.playlistSongsData = [];
         }
     },
     extraReducers: (builder) =>{
@@ -40,13 +44,15 @@ const playlistSlice = createSlice({
             })
             .addCase(createPlaylist.fulfilled, state => {
                 state.status = 'loaded';
+                toast.success('Playlist is created!')
             })
-            .addCase(createPlaylist.rejected, state => {
+            .addCase(createPlaylist.rejected, (state, action) => {
                 state.status = 'rejected';
+                toast.error(action.error.message??'Error occured, try again');
             })
     }
 });
 
 export { createPlaylist };
-export const { setPlaylistName, setPlaylistSongsData, removePlayListSongsData } = playlistSlice.actions;
+export const { setPlaylistName, setPlaylistSongsData, removePlayListSongsData, clearPlaylistSongsData } = playlistSlice.actions;
 export default playlistSlice.reducer;
