@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 class SpotifyAuth {
     private static clientId: string ='fb265b11d74f4e9393a68881a31d6c94';
-    private static redirectUri: string  = 'http://localhost:3000/redirect';
+    private static redirectUri: string  = 'https://spotyjam.netlify.app/redirect';
     private static scope: string  = 'playlist-modify-public user-read-private user-read-email playlist-modify-private playlist-read-collaborative';
     private static state: string  = `userNumber${Math.floor(Math.random()*1000000)}`;
     private static urlForToken: URL = new URL('https://accounts.spotify.com/api/token');
