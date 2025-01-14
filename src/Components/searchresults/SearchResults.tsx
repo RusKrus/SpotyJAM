@@ -29,7 +29,7 @@ class SearchResultsPresentational extends React.Component<ReduxPropsForSearchRes
     handleUnloadToSaveTracks = (): void => {
         if(this.props.songsList.length>0){
             const savedSongsData: string = JSON.stringify(this.props.parsedServerData);
-            window.sessionStorage.setItem('songData', savedSongsData)
+            window.sessionStorage.setItem('songData', savedSongsData);
         }
     };
 
@@ -52,13 +52,13 @@ class SearchResultsPresentational extends React.Component<ReduxPropsForSearchRes
     };
     
     componentWillUnmount(): void {
-            window.removeEventListener('beforeunload', this.handleUnloadToSaveTracks);
+        window.removeEventListener('beforeunload', this.handleUnloadToSaveTracks);
     };
 
     render(){
         const { songsList } = this.props;
         return(
-            <div className={styles.resultsBox}>
+            <div className={styles.resultsWithMusicBox}>
                 <div className={styles.headerBox}>
                     <h2 className={styles.resultBoxHeader}>
                         Results 
