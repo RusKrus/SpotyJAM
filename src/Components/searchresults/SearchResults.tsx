@@ -58,7 +58,7 @@ class SearchResultsPresentational extends React.Component<ReduxPropsForSearchRes
     render(){
         const { songsList } = this.props;
         return(
-            <div className={styles.resultsWithMusicBox}>
+            <div style ={{height: '40rem', width: '35%', backgroundColor: 'hsla(230, 60%, 50%, 1)', padding:'1rem', borderRadius: '20px', boxShadow: '10px 10px 10px black'}}>
                 <div className={styles.headerBox}>
                     <h2 className={styles.resultBoxHeader}>
                         Results 
