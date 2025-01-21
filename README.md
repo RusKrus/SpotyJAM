@@ -1,4 +1,4 @@
-# Welcome to JAMMMING web application! 
+# Welcome to SpotyJAM web application! 
 ## This app allows you to search for songs on Spotify, browse the results, and create new playlists with your favorite tracks.
 
 ## About the Project
@@ -26,11 +26,11 @@ This project was created as a pet project to learn and practice modern front-end
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/RusKrus/Jammming.git
+   git clone https://github.com/RusKrus/SpotyJAM.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd Jamming
+   cd SpotyJAM
    ```
 3. Install dependencies:
    ```bash
